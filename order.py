@@ -43,7 +43,7 @@ class Reader:
 
         tmp = []
         num = 0
-        firstgroup = False
+        firstgroup = True
         for line in lines:
             self.line_num += 1
             line = line.strip()
@@ -53,10 +53,10 @@ class Reader:
             tokens = line.split(" ")
 
             if "group" == tokens[0]:
-                if not firstgroup:
-                    self.commit_group()
-                else:
+                if firstgroup:
                     firstgroup = False
+                else:
+                    self.commit_group()
                 continue
 
             self.tmp.append(line)
