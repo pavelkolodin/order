@@ -21,7 +21,7 @@ python3 order.py output.txt 4 > output-2.txt
 ```
 И так далее.
 
-# Формат `<filename>`
+# Формат .txt файла с группами `<filename>`
 ```
 group 0
 Иванов Карл Колюневич
