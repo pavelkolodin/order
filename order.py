@@ -23,9 +23,6 @@ class Reader:
         exit(1)
 
     def commit_group(self):
-        if len(self.tmp) < 1:
-            return
-
         st = []
         for line in self.tmp:
             if '=' == line[0]:
@@ -46,6 +43,7 @@ class Reader:
 
         tmp = []
         num = 0
+        firstgroup = False
         for line in lines:
             self.line_num += 1
             line = line.strip()
@@ -55,7 +53,10 @@ class Reader:
             tokens = line.split(" ")
 
             if "group" == tokens[0]:
-                self.commit_group()
+                if not firstgroup:
+                    self.commit_group()
+                else:
+                    firstgroup = False
                 continue
 
             self.tmp.append(line)
@@ -88,7 +89,7 @@ class Reader:
         #print(self.groups)
         index = 0
         for group in self.new_groups:
-            print("group {}".format(index))
+            print("\ngroup {}".format(index))
             index += 1
             for line in group:
                 print(line)
